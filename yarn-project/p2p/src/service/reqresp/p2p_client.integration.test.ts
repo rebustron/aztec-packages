@@ -127,6 +127,7 @@ describe('Req Resp p2p client integration', () => {
         getPendingTxHashes: jest.fn().mockReturnValue([]),
         getTxStatus: jest.fn().mockReturnValue(undefined),
         markAsMined: jest.fn(),
+        markMinedAsPending: jest.fn(),
       };
 
       attestationPool = {
