@@ -19,24 +19,12 @@ async function runTest(
   threads?: number
 ) {
   const { AztecClientBackend } = await import("@aztec/bb.js");
-
-  debug("starting test...");
   const backend = new AztecClientBackend(bytecode, { threads });
-  const proof = await backend.generateProof(witness);
-  debug("generated proof");
 
+  const verified = await backend.proveAndVerify(witness);
+  console.log(`finished running proveAndVerify ${verified}`);
   await backend.destroy();
-
-  return false;
-  // debug(`verifying...`);
-  // const verifier = new BarretenbergVerifier({ threads });
-  // const verified = await verifier.verifyUltraHonkProof(proof, verificationKey);
-  // debug(`verified: ${verified}`);
-
-  // await verifier.destroy();
-
-  // debug("test complete.");
-  // return verified;
+  return verified;
 }
 
 (window as any).runTest = runTest;
