@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
   button.innerText = "Run Test";
   button.addEventListener("click", () =>
     runTest(
-      readStack(base64ToUint8Array(acirs), 1),
+      readStack(base64ToUint8Array(acirs), 0),
       readStack(base64ToUint8Array(witnesses), 0)
     )
   );
