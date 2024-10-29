@@ -92,22 +92,6 @@ export function injectCommands(program: Command, log: LogFn, debugLogger: DebugL
     });
 
   program
-    .command('register-recipient')
-    .description('Register a recipient in the PXE.')
-    .requiredOption('-a, --address <aztecAddress>', "The account's Aztec address.", parseAztecAddress)
-    .requiredOption('-p, --public-key <publicKey>', 'The account public key.', parsePublicKey)
-    .requiredOption(
-      '-pa, --partial-address <partialAddress>',
-      'The partially computed address of the account contract.',
-      parsePartialAddress,
-    )
-    .addOption(pxeOption)
-    .action(async ({ address, publicKey, partialAddress, rpcUrl }) => {
-      const { registerRecipient } = await import('./register_recipient.js');
-      await registerRecipient(address, publicKey, partialAddress, rpcUrl, debugLogger, log);
-    });
-
-  program
     .command('get-accounts')
     .description('Gets all the Aztec accounts stored in the PXE.')
     .addOption(pxeOption)
